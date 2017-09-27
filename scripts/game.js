@@ -35,15 +35,14 @@ function game() {
         y2: $("#paddleB").position().top + $("#paddleB").height()
     };
 
-
-    console.log(pA, pB);
-
-    // Set main loop to be called on the desired frame rate
+    //Set main loop to be called on the desired frame rate
     setInterval(gameLoop, 1000 / 60);
 
     // Main loop of the game
     function gameLoop() {
         moveBall();
+        movepaddleA();
+        movepaddleB();
     }
 
 
@@ -95,11 +94,62 @@ function game() {
         // Update ball position on X and Y axes based on speed and orientation
         ball.x += ball.speed * ball.directionX;
         ball.y += ball.speed * ball.directionY;
+        //ball.y = 140
 
 
         // Render the updated ball position
         $("#ball").css({ "left": ball.x, "top": ball.y });
     };
+
+
+
+
+    var paddleA = $("#paddleA");
+    var directions = {};
+    var speed = 4;
+
+    $('html').keyup(stop).keydown(charMovement);
+
+    function charMovement(e) {
+        directions[e.which] = true;
+        //console.log(directions);
+    }
+
+    function stop(e) {
+        delete directions[e.which];
+        //console.log(directions);
+
+    }
+
+    function movepaddleA(e) {
+        for (var i in directions) {
+
+            if (paddleA.position().top > 0 && i == 38) {
+                paddleA.css("top", (paddleA.position().top - speed) + "px");
+            }
+
+            if (paddleA.position().top < ($("#game").height() - paddleA.height()) && i == 40) {
+                paddleA.css("top", (paddleA.position().top + speed) + "px");
+            }
+        }
+    }
+
+
+
+    var paddleB = $("#paddleB");
+
+    function movepaddleB(e) {
+        for (var i in directions) {
+
+            if (paddleB.position().top > 0 && i == 87) {
+                paddleB.css("top", (paddleB.position().top - speed) + "px");
+            }
+
+            if (paddleB.position().top < ($("#game").height() - paddleB.height()) && i == 83) {
+                paddleB.css("top", (paddleB.position().top + speed) + "px");
+            }
+        }
+    }
 
 
 }
