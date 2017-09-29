@@ -21,18 +21,18 @@
 }
 
 #paddleA {
-  background: grey;
+  background: yellow;
   position: absolute;
   width: 10px;
   height: 80px;
   left: 50px;
   top: 100px;
   border-radius: 10px;
-  border: 1px solid blue;
+  border: 1px solid red;
 }
 
 #paddleB {
-  background: grey;
+  background: darkblue;
   position: absolute;
   width: 10px;
   height: 80px;
@@ -41,3 +41,15 @@
   border-radius: 10px;
   border: 1px solid red;
 }
+
+#score {
+  background: white;
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  left: 400px;
+  top: 330;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
